@@ -4,6 +4,7 @@ import QtQuick.Layouts 1.3
 import Qt.labs.platform 1.1
 import "./onboarding"
 import "./app"
+import im.status.desktop.Status 1.0
 
 ApplicationWindow {
     id: applicationWindow
@@ -12,6 +13,11 @@ ApplicationWindow {
     title: "Nim Status Client"
     visible: true
     font.family: "Inter"
+
+    Component.onCompleted: {
+        console.log("applicationwindow loaded");
+        console.log(Status.hashMessage("./data/keystore/"));
+    }
 
     SystemTrayIcon {
         visible: true
