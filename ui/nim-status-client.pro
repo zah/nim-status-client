@@ -64,7 +64,7 @@ DISTFILES += \
     app/img/walletActive.svg \
     app/qmldir \
     imports/qmldir \
-    onboarding/EnterSeed.qml \
+    onboarding/ExistingKey.qml \
     onboarding/GenKey.qml \
     onboarding/Intro.qml \
     onboarding/KeysMain.qml \

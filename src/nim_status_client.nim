@@ -1,6 +1,7 @@
 import NimQml
 import applicationView
 import chats
+import onboarding
 import json
 import state
 import status/utils
@@ -67,6 +68,11 @@ proc mainProc() =
   let chatsVariant = newQVariant(chatsModel)
   defer: chatsVariant.delete
 
+  var onboarding = newOnboarding();
+  defer: onboarding.delete
+
+  let onboardingVariant = newQVariant(onboarding)
+  defer: onboardingVariant.delete
 
 
   appState.subscribe(proc () =
@@ -83,6 +89,7 @@ proc mainProc() =
 
   engine.setRootContextProperty("logic", logicVariant)
   engine.setRootContextProperty("chatsModel", chatsVariant)
+  engine.setRootContextProperty("onboardingLogic", onboardingVariant)
 
   engine.load("../ui/main.qml")
   
@@ -93,7 +100,7 @@ proc mainProc() =
 
   # Handle signals as part of the state
   var signalWorker: Thread[AppState]
-  signalWorker.createThread(proc(s:AppState) = s.processSignals, appState)
+  signalWorker.createThread(proc(s: AppState) = s.processSignals, appState)
   defer: signalWorker.joinThread()
   
   

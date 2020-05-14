@@ -29,7 +29,7 @@ Page {
             onExited: keysMain.visible = false
 
             DSM.SignalTransition {
-                targetState: enterSeedState
+                targetState: existingKeyState
                 signal: keysMain.btnExistingKey.clicked
             }
 
@@ -40,9 +40,9 @@ Page {
         }
 
         DSM.State {
-            id: enterSeedState
-            onEntered: function() { console.log("======> ENTER seed state"); enterSeed.visible = true; }
-            onExited: enterSeed.visible = false
+            id: existingKeyState
+            onEntered: function() { console.log("======> ENTER seed state"); existingKey.visible = true; }
+            onExited: existingKey.visible = false
 
 //            DSM.SignalTransition {
 //                targetState: keysMainState
@@ -80,8 +80,8 @@ Page {
         visible: false
     }
 
-    EnterSeed {
-        id: enterSeed
+    ExistingKey {
+        id: existingKey
         anchors.fill: parent
         visible: false
     }

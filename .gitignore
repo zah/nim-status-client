@@ -10,3 +10,4 @@ noBackup/
 .vscode
 bin/
 .DS_Store
+*.autosave

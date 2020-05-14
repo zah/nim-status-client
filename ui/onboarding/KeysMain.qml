@@ -63,6 +63,7 @@ Page {
         anchors.top: txtDesc1.bottom
         anchors.topMargin: 87
         anchors.horizontalCenter: parent.horizontalCenter
+        // onClicked: logic.generateAddresses()
         width: 142
         height: 44
     }
@@ -76,6 +77,7 @@ Page {
         anchors.horizontalCenter: parent.horizontalCenter
         label: "I'm new, generate me a key"
         background: Rectangle {color: "transparent"}
+        onClicked: onboardingLogic.generateAddresses()
     }
 
 }

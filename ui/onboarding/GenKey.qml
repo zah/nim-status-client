@@ -6,13 +6,8 @@ Page {
     RowLayout {
         anchors.centerIn: parent
 
-        Button {
-            text: qsTr("Popup")
-            highlighted: true
-        }
-
-        Button {
-            text: qsTr("Page")
+        Text {
+            text: onboardingLogic.generatedAddresses
         }
     }
 }
