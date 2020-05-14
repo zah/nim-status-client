@@ -1,6 +1,7 @@
 import NimQml
 import applicationView
 import chats
+import chats_logs
 import json
 import state
 import status/utils
@@ -67,7 +68,11 @@ proc mainProc() =
   let chatsVariant = newQVariant(chatsModel)
   defer: chatsVariant.delete
 
+  var chatLogsModel = newChatsLogModel();
+  defer: chatLogsModel.delete
 
+  let chatLogsVariant = newQVariant(chatLogsModel)
+  defer: chatLogsVariant.delete
 
   appState.subscribe(proc () =
     chatsModel.names = @[]
@@ -81,14 +86,26 @@ proc mainProc() =
   appState.addChannel("test")
   appState.addChannel("test2")
 
+
   engine.setRootContextProperty("logic", logicVariant)
   engine.setRootContextProperty("chatsModel", chatsVariant)
+  engine.setRootContextProperty("chatLogsModel", chatLogsVariant)
 
   engine.load("../ui/main.qml")
-  
+
+  # chatLogsModel.addNameTolist("hello there")
+
   # EXAMPLE: this will be triggered once a message is received
   appState.onSignal(SignalType.Message, proc(myMessage: string): void =
     echo "I received a message: ", myMessage
+
+    var msg = $parseJson(myMessage)["event"]["messages"][0]["text"].str
+    # chatLogsModel.chatResultChanged("hi again")
+    # chatLogsModel.setChatResult(msg)
+    chatLogsModel.setChatResult("come on!")
+    # chatLogsModel.chatResultChanged("come on dude!")
+    # chatLogsVariant.setChatResult("come on!")
+    # chatLogsModel.addNameTolist("hi again")
   );
 
   # Handle signals as part of the state
