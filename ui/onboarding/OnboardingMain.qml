@@ -14,7 +14,7 @@ Page {
 
         DSM.State {
             id: stateIntro
-            onEntered: intro.visible = true
+            onEntered: function() { console.log("======> ENTER intro state"); intro.visible = true; }
             onExited: intro.visible = false
 
             DSM.SignalTransition {
@@ -25,7 +25,7 @@ Page {
 
         DSM.State {
             id: keysMainState
-            onEntered: keysMain.visible = true
+            onEntered: function() { console.log("======> ENTER keys main state"); keysMain.visible = true; }
             onExited: keysMain.visible = false
 
             DSM.SignalTransition {
@@ -34,14 +34,14 @@ Page {
             }
 
             DSM.SignalTransition {
-                targetState: newKeyState
+                targetState: genKeyState
                 signal: keysMain.btnGenKey.clicked
             }
         }
 
         DSM.State {
             id: enterSeedState
-            onEntered: enterSeed.visible = true
+            onEntered: function() { console.log("======> ENTER seed state"); enterSeed.visible = true; }
             onExited: enterSeed.visible = false
 
 //            DSM.SignalTransition {
@@ -52,7 +52,7 @@ Page {
 
         DSM.State {
             id: genKeyState
-            onEntered: genKey.visible = true
+            onEntered: function() { console.log("======> ENTER gen key state"); genKey.visible = true; }
             onExited: genKey.visible = false
 
 //            DSM.SignalTransition {
@@ -63,7 +63,7 @@ Page {
 
         DSM.FinalState {
             id: appState
-            onEntered: app.visible = true
+            onEntered: function() { console.log("======> ENTER app state"); app.visible = true; }
             onExited: app.visible = false
         }
     }
@@ -82,6 +82,12 @@ Page {
 
     EnterSeed {
         id: enterSeed
+        anchors.fill: parent
+        visible: false
+    }
+
+    GenKey {
+        id: genKey
         anchors.fill: parent
         visible: false
     }

@@ -63,7 +63,6 @@ Page {
         anchors.top: txtDesc1.bottom
         anchors.topMargin: 87
         anchors.horizontalCenter: parent.horizontalCenter
-        onClicked: app.visible = true
         width: 142
         height: 44
     }

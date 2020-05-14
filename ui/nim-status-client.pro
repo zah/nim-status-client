@@ -65,6 +65,7 @@ DISTFILES += \
     app/qmldir \
     imports/qmldir \
     onboarding/EnterSeed.qml \
+    onboarding/GenKey.qml \
     onboarding/Intro.qml \
     onboarding/KeysMain.qml \
     onboarding/OnboardingMain.qml \
