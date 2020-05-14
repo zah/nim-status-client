@@ -47,8 +47,7 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/path/to/dotherside/build/lib
 
 ### 5. Copy libstatus to repo
 
-Copy `libstatus.a` to the `./lib` folder. Can be obtained from `status-react/result` by executing `make status-go-desktop`.
-**macos:** rename `libstatus.a` to `libstatus.dylib` _before_ copying over. Alternatively, modify `desktop/default.nix` to output `libstatus.dylib` before copying over.
+Copy `libstatus.a` to the `lib/` folder. Can be obtained from `status-go/build/bin` by executing `make statusgo-library` in a clone of the [status-go](https://github.com/status-im/status-go) repo.
 
 ### 6. Install nim dependencies
 
@@ -87,7 +86,7 @@ To enable a meagre app reload during development, first creates a task in `.vsco
   "command": "nim",
   "args": [
     "c",
-    "-L:lib/libstatus.dylib",
+    "-L:lib/libstatus.a",
     "-L:-lm",
     "-L:\"-framework Foundation -framework Security -framework IOKit -framework CoreServices\"",
     "--outdir:./bin",

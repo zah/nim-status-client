@@ -148,6 +148,20 @@ RowLayout {
             Layout.alignment: Qt.AlignLeft | Qt.AlignTop
             Layout.fillHeight: true
         }
+
+        BrowserLayout {
+          id: browserLayoutContainer
+          Layout.fillWidth: true
+          Layout.alignment: Qt.AlignLeft | Qt.AlignTop
+          Layout.fillHeight: true
+        }
+
+        ProfileLayout {
+          id: profileLayoutContainer
+          Layout.fillWidth: true
+          Layout.alignment: Qt.AlignLeft | Qt.AlignTop
+          Layout.fillHeight: true
+        }
     }
 }
 
