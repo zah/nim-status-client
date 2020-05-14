@@ -8,6 +8,7 @@ import status/utils
 import strformat
 import strutils
 
+import status/libstatusqml
 import status/core as status
 import status/chat as status_chat
 import status/test as status_test
@@ -91,8 +92,14 @@ proc mainProc() =
   engine.setRootContextProperty("chatsModel", chatsVariant)
   engine.setRootContextProperty("onboardingLogic", onboardingVariant)
 
+  var initLibStatusQml = proc(): LibStatusQml =
+    let libStatus = newLibStatusQml();
+    return libStatus;
+
+  discard qmlRegisterSingletonType[LibStatusQml]("im.status.desktop.Status", 1, 0, "Status", initLibStatusQml)
+
   engine.load("../ui/main.qml")
-  
+
   # EXAMPLE: this will be triggered once a message is received
   appState.onSignal(SignalType.Message, proc(myMessage: string): void =
     echo "I received a message: ", myMessage
@@ -102,6 +109,7 @@ proc mainProc() =
   var signalWorker: Thread[AppState]
   signalWorker.createThread(proc(s: AppState) = s.processSignals, appState)
   defer: signalWorker.joinThread()
+
   
   
   # Qt main event loop is entered here
