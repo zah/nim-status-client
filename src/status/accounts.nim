@@ -1,5 +1,6 @@
 import libstatus
 import json
+import utils
 
 proc generateAddresses*(): string =
   let multiAccountConfig = %* {
@@ -9,5 +10,6 @@ proc generateAddresses*(): string =
     "paths": ["m/43'/60'/1581'/0'/0", "m/44'/60'/0'/0/0"]
   }
   result = $libstatus.multiAccountGenerateAndDeriveAddresses($multiAccountConfig)
-  # result.parseJson
-  # TODO: create template for error handling
+
+proc generateAlias*(publicKey: string): string =
+  result = $libstatus.generateAlias(publicKey.toGoString)

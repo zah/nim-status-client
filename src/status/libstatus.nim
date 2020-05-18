@@ -19,3 +19,7 @@ proc callPrivateRPC*(inputJSON: cstring): cstring {.importc: "CallPrivateRPC".}
 proc addPeer*(peer: cstring): cstring {.importc: "AddPeer".}
 
 proc setSignalEventCallback*(callback: SignalCallback) {.importc: "SetSignalEventCallback".}
+
+proc generateAlias*(p0: GoString): cstring {.importc: "GenerateAlias".}
+
+proc identicon*(p0: GoString): cstring {.importc: "Identicon".}

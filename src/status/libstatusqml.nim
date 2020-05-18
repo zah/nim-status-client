@@ -1,5 +1,6 @@
 import NimQml
 import libstatus
+import utils
 
 QtObject:
   type 
@@ -22,21 +23,29 @@ QtObject:
   proc hashMessage*(self: LibStatusQml, p0: string): string {.slot.} =
     return $libstatus.hashMessage(p0)
 
-  proc initKeystore*(self: LibStatusQml, keydir: string): string =
+  proc initKeystore*(self: LibStatusQml, keydir: string): string {.slot.} =
     return $libstatus.initKeystore(keydir)
 
-  # proc openAccounts*(datadir: cstring): cstring {.importc: "OpenAccounts".}
+  proc openAccounts*(self: LibStatusQml, datadir: string): string {.slot.} =
+    return $libstatus.openAccounts(datadir)
 
-  # proc multiAccountGenerateAndDeriveAddresses*(paramsJSON: cstring): cstring {.importc: "MultiAccountGenerateAndDeriveAddresses".}
+  proc multiAccountGenerateAndDeriveAddresses*(self: LibStatusQml, paramsJSON: string): string {.slot.} =
+    return $libstatus.multiAccountGenerateAndDeriveAddresses(paramsJSON)
 
-  # proc multiAccountStoreDerivedAccounts*(paramsJSON: cstring): cstring {.importc: "MultiAccountStoreDerivedAccounts".}
+  proc multiAccountStoreDerivedAccounts*(self: LibStatusQml, paramsJSON: string): string {.slot.} =
+    return $libstatus.multiAccountStoreDerivedAccounts(paramsJSON)
 
-  # proc saveAccountAndLogin*(accountData: cstring, password: cstring, settingsJSON: cstring, configJSON: cstring, subaccountData: cstring): cstring {.importc: "SaveAccountAndLogin".}
+  proc saveAccountAndLogin*(self: LibStatusQml, accountData: string, password: string, settingsJSON: string, configJSON: string, subaccountData: string): string {.slot.} =
+    return $libstatus.saveAccountAndLogin(accountData, password, settingsJSON, configJSON, subaccountData)
 
-  # proc callRPC*(inputJSON: cstring): cstring {.importc: "CallRPC".}
+  proc callRPC*(self: LibStatusQml, inputJSON: string): string {.slot.} =
+    return $libstatus.callRPC(inputJSON)
 
-  # proc callPrivateRPC*(inputJSON: cstring): cstring {.importc: "CallPrivateRPC".}
+  proc callPrivateRPC*(self: LibStatusQml, inputJSON: string): string {.slot.} =
+    return $libstatus.callPrivateRPC(inputJSON)
 
-  # proc addPeer*(peer: cstring): cstring {.importc: "AddPeer".}
-
-  # proc setSignalEventCallback*(callback: SignalCallback) {.importc: "SetSignalEventCallback".}
+  proc addPeer*(self: LibStatusQml, peer: string): string {.slot.} =
+    return $libstatus.addPeer(peer)
+  
+  proc generateAlias*(self: LibStatusQml, p0: string): string {.slot.} =
+    return $libstatus.generateAlias(p0.toGoString)
